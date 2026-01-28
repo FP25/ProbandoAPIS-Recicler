@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         Button boton=findViewById(R.id.boton_main);
         EditText ediTxtBusq=findViewById(R.id.main_ET);
         TextView testing=findViewById(R.id.text_test);
+        testing.setText("Loading...");
 
         RecyclerView recyVw=findViewById(R.id.recycler_anime);
         APIinterface apiInterface= APICall.getClient().create(APIinterface.class);
@@ -65,13 +66,13 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Animes> call, Throwable t) {
+                if (animesList.isEmpty()){
+                    testing.setText("Lo sentimos pero hubo un error inesperado.... Paguina caida :(");
+                }
                 Log.d("Error! llamada fallida.",t.toString());
             }
         });
-
-        if (animesList.isEmpty()){
-            testing.setText("Lo sentimos pero hubo un error inesperado.... Paguina caida :(");
-        }
+        testing.setText(" ");
 
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Animes> call, Throwable t) {
+                        if (animesList.isEmpty()){
+                            testing.setText("Lo sentimos pero hubo un error inesperado.... Paguina caida :(");
+                        }
                         Log.d("Error! llamada fallida.",t.toString());
                     }
                 });

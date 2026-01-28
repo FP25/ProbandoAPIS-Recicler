@@ -15,26 +15,25 @@
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
         >
-
         <EditText
             android:id="@+id/main_ET"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:hint="Introduzca respuesta"
+            android:hint="Introduzca el nombre del anime"
             android:inputType="text"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="10dp"
 
             />
-
         <Button
             android:id="@+id/boton_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Buscar"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/naranja_oscuro"
 
             />
-
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -44,9 +43,9 @@
         app:layout_constraintTop_toBottomOf="@id/busqueda_main"
         app:layout_constraintStart_toStartOf="@id/busqueda_main"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
         android:layout_marginTop="10dp"
         tools:itemCount="5"
+        app:spanCount="2"
         tools:listitem="@layout/vw_elemento"
 
         />
