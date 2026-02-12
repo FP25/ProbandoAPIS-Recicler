@@ -1,12 +1,15 @@
 package com.example.recyclerxapi;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.recyclerxapi.ApiThings.Animes;
@@ -37,7 +40,24 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.tvState.setText("Estado: "+animes.get(position).getAtributos().getAnimeState());
         holder.tvAnID.setText("ID: "+animes.get(position).getAnimeID());
 
-        Glide.with(holder.itemView.getContext()).load(animes.get(position).getAtributos().getFondo().getURLImagen()).into(holder.imVw);
+        Glide.with(holder.itemView.getContext()).load(animes.get(position).getAtributos().getPosterImag().getURLImagen()).into(holder.imVw);
+
+        holder.tarjeta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Bundle bundle=new Bundle();
+                String animeID=animes.get(holder.getAbsoluteAdapterPosition()).getAnimeID();
+                bundle.putString("animeId",animeID);
+
+                Intent paguinaDetallada= new Intent(contexto,DetalleSerie.class);
+                paguinaDetallada.putExtras(bundle);
+                // paguinaDetallada.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                contexto.startActivity(paguinaDetallada);
+
+            }
+        });
+
 
     }
 
@@ -51,6 +71,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         TextView tvName, tvNumCaps, tvState, tvAnID;
         ImageView imVw;
 
+        CardView tarjeta;
+
         public ViewHoldar(@NonNull View itemView) {
             super(itemView);
 
@@ -60,6 +82,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             tvAnID = itemView.findViewById(R.id.animeID);
 
             imVw = itemView.findViewById(R.id.imVw_animeUrl);
+            tarjeta=itemView.findViewById(R.id.trajetaView);
+
         }
     }
 }

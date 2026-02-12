@@ -10,7 +10,7 @@ public class APICall {
     public static String BASE_URL="https://kitsu.io/api/edge/";
     private static Retrofit retrofit;
 
-    public static Retrofit getClient(){
+    public static Retrofit getAnimes(){
         if (retrofit==null){
             HttpLoggingInterceptor interceptor=new HttpLoggingInterceptor();
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

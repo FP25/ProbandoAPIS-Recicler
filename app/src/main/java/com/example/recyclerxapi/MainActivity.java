@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.recyclerxapi.ApiThings.APICall;
@@ -53,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         testing.setText("Loading...");
 
         RecyclerView recyVw=findViewById(R.id.recycler_anime);
-        APIinterface apiInterface= APICall.getClient().create(APIinterface.class);
+        APIinterface apiInterface= APICall.getAnimes().create(APIinterface.class);
         Call<Animes> call=apiInterface.getAnimes();
         call.enqueue(new Callback<Animes>() {
             @Override
