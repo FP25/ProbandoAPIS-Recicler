@@ -1,62 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
+    tools:context=".Activities.MainActivity">
+    
+    
     <LinearLayout
-        android:id="@+id/busqueda_main"
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        >
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/main_ET"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:hint="Introduzca respuesta"
-            android:inputType="text"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="10dp"
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:id="@+id/toolbar"
+            android:background="@color/saddlebrown"
+            >
+            <TextView
+                android:id="@+id/txt_toolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bienvenido!"
+                android:textSize="45sp"
+                android:layout_gravity="center"
+                />
 
-            />
+        </androidx.appcompat.widget.Toolbar>
 
-        <Button
-            android:id="@+id/boton_main"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Buscar"
-
-            />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/contenedor_fragments"/>
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_anime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/busqueda_main"
-        app:layout_constraintStart_toStartOf="@id/busqueda_main"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
-        android:layout_marginTop="10dp"
-        tools:itemCount="5"
-        tools:listitem="@layout/vw_elemento"
-
-        />
-    <TextView
-        android:id="@+id/text_test"
+    <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recycler_anime"
-        android:textSize="50dp"
-        android:text="Cargando..."
+        android:layout_height="match_parent"
+        android:id="@+id/nav_view"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_menu"
+        app:itemTextColor="@color/cremoso"
+        app:itemIconTint="@color/saddlebrown"
+        android:background="@color/gris_Clarito"
         />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

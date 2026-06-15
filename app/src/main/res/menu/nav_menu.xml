@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    >
+
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_busqueda"
+            android:icon="@drawable/ic_busqueda"
+            android:title="Buscar"
+            />
+
+        <item
+            android:id="@+id/nav_favoritos"
+            android:icon="@drawable/ic_favoritos"
+            android:title="Mis favoritos"
+            />
+
+        <item
+            android:id="@+id/nav_continuar"
+            android:icon="@drawable/ic_comenzar"
+            android:title="Continuar viendo"
+            />
+        <item
+            android:id="@+id/nav_list"
+            android:icon="@drawable/ic_pendientes"
+            android:title="Lista de Pendientes"
+            />
+        <item
+            android:id="@+id/nav_animesVistos"
+            android:icon="@drawable/ic_animes_vistos"
+            android:title="Animes vistos"
+            />
+
+        <item
+            android:id="@+id/nav_mangasLeidos"
+            android:icon="@drawable/ic_mangas_leidos"
+            android:title="Mangas Leidos"
+            />
+
+    </group>
+
+</menu>

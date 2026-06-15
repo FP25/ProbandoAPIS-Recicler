@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.ContinuarActivity"
+    android:background="@color/gris_Clarito">
+
+
+    <LinearLayout
+        android:id="@+id/toolbar_ply"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnregreso_continuar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_back"
+            android:layout_marginEnd="275dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/contenedor_imVw_C"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="@id/toolbar_ply"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginBottom="35dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+        <ImageView
+            android:id="@+id/imVw_continuar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:srcCompat="@tools:sample/avatars"
+            android:layout_weight="5"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="2"
+            >
+
+            <TextView
+                android:id="@+id/titulo_continuar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="35sp"
+                android:text="Titulo"
+                android:textColor="@color/cremoso"
+                android:textStyle="bold"
+                android:layout_marginBottom="15dp"
+                />
+
+
+            <!-- Si esta en emisión el color del txt estara verde ==> android:textColor="@color/verde_esmeralda"-->
+            <TextView
+                android:id="@+id/estado_continuar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:text="Estado"
+                android:textColor="@color/cremoso"
+                android:textStyle="bold"
+                android:layout_marginBottom="15dp"
+                />
+
+            <!-- si tiene temporadas tiene que decir primero el numero total de estas y luego la temporada en la que va y el cap (TemporadasTt X/ TemporadaAct X - Cap X) -->
+            <TextView
+                android:id="@+id/numCaps_continuar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="Num_CapsTt/Num_CapsVst"
+                android:textColor="@color/cremoso"
+                android:textStyle="bold"
+                android:textSize="25sp"/>
+
+            <Spinner
+                android:id="@+id/lista_continuar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scrollbarSize="3dp"
+                android:textColor="@color/cremoso"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

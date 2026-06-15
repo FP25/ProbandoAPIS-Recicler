@@ -11,7 +11,8 @@ public interface APIinterface {
     Call<Animes>getAnimes();
     @GET("anime")
     Call<Animes>getAnimesByName(@Query("filter[text]") String anime);
-
+    @GET("anime")
+    Call<Animes>getAnimesById(@Query("filter[id]") String anime);
 
     @GET("manga")
     Call<Animes>getMangas();

@@ -1,23 +1,23 @@
-package com.example.recyclerxapi;
+package com.example.recyclerxapi.Fragments;
 
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.recyclerxapi.ApiThings.APICall;
 import com.example.recyclerxapi.ApiThings.APIinterface;
 import com.example.recyclerxapi.ApiThings.Animes;
+import com.example.recyclerxapi.R;
+import com.example.recyclerxapi.RycAdapter.BusquedaRcyAdapter;
 
 import java.util.ArrayList;
 
@@ -25,33 +25,24 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
-
-    // Paguina para ver el anime https://kitsu.app/anime/cowboy-bebop
-    // API https://kitsu.io/api/edge/
-    // Doc https://kitsu.docs.apiary.io/#reference/anime
-
-    // hacer una funcion para el filtrado X categorias
-
+public class FragmentInicio extends Fragment {
+    public FragmentInicio() {
+        // Required empty public constructor
+    }
 
     ArrayList<Animes.Anime> animesList=new ArrayList<>();
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        Button boton=findViewById(R.id.boton_main);
-        EditText ediTxtBusq=findViewById(R.id.main_ET);
-        TextView testing=findViewById(R.id.text_test);
+        View view=inflater.inflate(R.layout.fragment_inicio, container, false);
 
-        RecyclerView recyVw=findViewById(R.id.recycler_anime);
+        Button boton=view.findViewById(R.id.boton_main);
+        EditText ediTxtBusq=view.findViewById(R.id.main_ET);
+        TextView testing=view.findViewById(R.id.text_test);
+
+        RecyclerView recyVw=view.findViewById(R.id.recycler_anime);
         APIinterface apiInterface= APICall.getClient().create(APIinterface.class);
         Call<Animes> call=apiInterface.getAnimes();
         call.enqueue(new Callback<Animes>() {
@@ -59,10 +50,9 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<Animes> call, Response<Animes> response) {
                 Animes anim=response.body();
                 animesList.addAll(anim.getAnimes());
-                RecyclerAdapter adapter=new RecyclerAdapter(MainActivity.this,animesList);
+                BusquedaRcyAdapter adapter=new BusquedaRcyAdapter(getContext(),animesList);
                 recyVw.setAdapter(adapter);
             }
-
             @Override
             public void onFailure(Call<Animes> call, Throwable t) {
                 Log.d("Error! llamada fallida.",t.toString());
@@ -86,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                         for (Animes.Anime anime:anim.getAnimes()){
                             animesList.add(anime);
                         }
-                        RecyclerAdapter adapter=new RecyclerAdapter(MainActivity.this,animesList);
+                        BusquedaRcyAdapter adapter=new BusquedaRcyAdapter(getContext(),animesList);
                         recyVw.setAdapter(adapter);
                     }
 
@@ -97,5 +87,9 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+
+
+
+        return view;
     }
 }

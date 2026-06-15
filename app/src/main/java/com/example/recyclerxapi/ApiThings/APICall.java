@@ -8,6 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class APICall {
 
     public static String BASE_URL="https://kitsu.io/api/edge/";
+    public static String BASE_URL2="https://private-anon-61d7c5b4b3-kitsu.apiary-proxy.com/api/edge/";
     private static Retrofit retrofit;
 
     public static Retrofit getClient(){
