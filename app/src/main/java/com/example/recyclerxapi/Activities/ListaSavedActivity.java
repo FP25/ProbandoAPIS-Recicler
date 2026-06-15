@@ -16,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
 import com.example.recyclerxapi.Managers.ContinuarManager;
+import com.example.recyclerxapi.Managers.FavoritosManager;
 import com.example.recyclerxapi.Managers.ListSavedManager;
 import com.example.recyclerxapi.R;
 
@@ -51,11 +52,35 @@ public class ListaSavedActivity extends AppCompatActivity {
         numCapsTv.setText(animeCaps);
         Glide.with(ListaSavedActivity.this).load(animeImgUrl).into(imvwFondo);
 
+        boolean isFav= FavoritosManager.isFavorite(ListaSavedActivity.this,animeId);
+        if (isFav){
+            btnFavorite.setImageResource(R.drawable.ic_favorito_fill);
+        }else{
+            btnFavorite.setImageResource(R.drawable.ic_favoritos);
+        }
+
         // logica de regreso
         btnRegreso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        btnFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                boolean isFav= FavoritosManager.isFavorite(ListaSavedActivity.this,animeId);
+                if (!isFav){
+                    btnFavorite.setImageResource(R.drawable.ic_favorito_fill);
+                    FavoritosManager.addFavorito(ListaSavedActivity.this,animeId);
+                    Toast.makeText(ListaSavedActivity.this,"Añadido a favoritos",Toast.LENGTH_SHORT).show();
+                }else{
+                    btnFavorite.setImageResource(R.drawable.ic_favoritos);
+                    FavoritosManager.removeFavorito(ListaSavedActivity.this,animeId);
+                    Toast.makeText(ListaSavedActivity.this,"removido de favoritos",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -66,13 +91,13 @@ public class ListaSavedActivity extends AppCompatActivity {
                 boolean isWatching= ContinuarManager.isWatching(ListaSavedActivity.this,animeId);
                 if (!isWatching){
                     btnContinuar.setImageResource(R.drawable.ic_dejar_d_ver);
-                    Toast.makeText(ListaSavedActivity.this,"Haz comenzando a ver la serie",Toast.LENGTH_SHORT).show();
                     ContinuarManager.addToPlay(ListaSavedActivity.this,animeId);
+                    Toast.makeText(ListaSavedActivity.this,"Haz comenzando a ver la serie",Toast.LENGTH_SHORT).show();
                     ListSavedManager.removeToDList(ListaSavedActivity.this,animeId);
                 }else{
                     btnContinuar.setImageResource(R.drawable.ic_comenzar);
-                    Toast.makeText(ListaSavedActivity.this,"Haz dejado de ver la serie",Toast.LENGTH_SHORT).show();
                     ContinuarManager.removeToContinuar(ListaSavedActivity.this,animeId);
+                    Toast.makeText(ListaSavedActivity.this,"Haz dejado de ver la serie",Toast.LENGTH_SHORT).show();
                     ListSavedManager.addToList(ListaSavedActivity.this,animeId);
                 }
             }
