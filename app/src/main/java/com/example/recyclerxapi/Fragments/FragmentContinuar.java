@@ -60,7 +60,6 @@ public class FragmentContinuar extends Fragment {
             noStartPly.setText("No has comenzado a ver nada todavia.");
         }
 
-
         ContinuarManager.showVistos(getContext());
 
 

@@ -52,24 +52,23 @@ public class FavoritoActivity extends AppCompatActivity {
         boolean isFav= FavoritosManager.isFavorite(FavoritoActivity.this,animeId);
         if (isFav){
             favoriteBtn.setImageResource(R.drawable.ic_favorito_fill);
-
         }else{
             favoriteBtn.setImageResource(R.drawable.ic_favoritos);
-
         }
 
 
         favoriteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean isFav= FavoritosManager.isFavorite(FavoritoActivity.this,animeId);
                 if (isFav){
                     favoriteBtn.setImageResource(R.drawable.ic_favoritos);
                     FavoritosManager.removeFavorito(FavoritoActivity.this,animeId);
                     Toast.makeText(FavoritoActivity.this,"Se ha retirado de favoritos",Toast.LENGTH_SHORT).show();
-                    FavoritosManager.showFavoritos(FavoritoActivity.this);
 
                 }else{
                     favoriteBtn.setImageResource(R.drawable.ic_favorito_fill);
+                    FavoritosManager.addFavorito(FavoritoActivity.this,animeId);
                     Toast.makeText(FavoritoActivity.this,"Se ha añadido a favoritos",Toast.LENGTH_SHORT).show();
 
                 }

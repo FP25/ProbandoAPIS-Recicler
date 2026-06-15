@@ -95,6 +95,18 @@
                 android:layout_height="wrap_content"
                 android:scrollbarSize="3dp"
                 android:textColor="@color/cremoso"
+                android:layout_marginBottom="10dp"
+                />
+
+            <Button
+                android:id="@+id/btnFinalizado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/naranja_cobre"
+                android:textSize="20sp"
+                android:textColor="@color/cremoso"
+                android:textStyle="bold"
+                android:text="Visto"
                 />
 
         </LinearLayout>

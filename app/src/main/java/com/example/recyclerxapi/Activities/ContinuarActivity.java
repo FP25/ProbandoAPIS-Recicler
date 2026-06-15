@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -17,6 +18,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
+import com.example.recyclerxapi.Managers.ContinuarManager;
+import com.example.recyclerxapi.Managers.FinalizadosManager;
 import com.example.recyclerxapi.R;
 
 import java.util.ArrayList;
@@ -40,6 +43,7 @@ public class ContinuarActivity extends AppCompatActivity {
         TextView numCapsTv=findViewById(R.id.numCaps_continuar);
         Spinner editarCaps=findViewById(R.id.lista_continuar);
         ImageButton btnRegreso=findViewById(R.id.btnregreso_continuar);
+        Button btnFinalizado=findViewById(R.id.btnFinalizado);
 
         ArrayList <String>elementos=new ArrayList<>();
         elementos.add("Capitulos");
@@ -77,6 +81,17 @@ public class ContinuarActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
+        btnFinalizado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FinalizadosManager.addToFinalizados(ContinuarActivity.this,animeId);
+                Toast.makeText(ContinuarActivity.this,"Haz acabado de ver la serie",Toast.LENGTH_SHORT).show();
+                ContinuarManager.removeToContinuar(ContinuarActivity.this,animeId);
+            }
+        });
+
 
     }
 }
